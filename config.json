@@ -1,7 +1,7 @@
 {
 
     "info"  : {
-        "user" : "root" , 
-        "password":"rootUSER123" 
+        "user" : "myuser" , 
+        "password":"userpassword" 
     }    
 }
