@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+     <head>
+
+        <meta charset="utf-8">
+        {% if title %}
+
+         <title>{{title}}</title>
+
+        {% endif %}
+
+
+    </head>
+
+     <body>
+
+    <style>
+        table {       
+        width: 80%; 
+        margin: auto; /* Align the table to the center of the window */
+        }
+
+          }
+         td, th {
+            padding: .3em 1em;
+          }
+         tr:nth-child(2n+3) {background-color:#FFFFFF;}
+         tr:nth-child(2n) {background-color:#F5F5F5;}
+         thead {
+              background: #ADD8E6; /* Title bar background color */
+              color: #000; /* Text color*/
+         
+ 
+    </style>
+
+    <table id="myTable", border="1" >
+        <thead>
+	<tr height="40"><th width=15%>Date</th><th width=15%>Client name</th><th width=30%>Provider name</th><th>Wons</th><th>Revenue</th></tr>
+        </thead>
+
+        <tbody>
+
+          {% for item in results %}
+
+            <tr align="center", height="30">
+                 <td>{{ item[0] }}</td>
+                 <td>{{ item[1] }}</td>
+                 <td>{{ item[2] }}</td>
+                 <td>{{ item[3] }}</td>
+                 <td>{{ item[4] }}</td>
+            </tr> 
+
+          {% endfor %}
+
+        </tbody>
+   </table>
+
+        <form action="{{ url_for('date_select') }}" method="post"> 
+         
+           <p>
+               {% if title %}
+                 <label for="date_in">Select date from</label>
+                  <input id="date_in" type="date" name="calendar" value="{{date_in}}" max="{{date_out}}" min="{{date_in}}">
+                  <label for="date_out">Select date to</label>
+                  <input id="date_out" type="date" name="calendar" value="{{date_out}}" max="{{date_out}}" min="{{date_in}}">
+                  <input type="submit" value="submit">
+               {% endif %}
+          </p>
+        
+        </form>
+
+        <form action="{{ url_for('client_select') }}" method="post"> 
+           
+          <p>
+            <label for="client_name">Select Client Name</label>   
+               <select name="client_name" >            
+               {% for item in results_all %}
+                   <option value=" {{item[1]}} ">{{ item[1] }}</option>
+               {% endfor %}
+               </select>
+             
+            <input type="submit", value="submit">
+	  </p>
+        
+        </form>
+    </body>
+</html>
+
