@@ -26,8 +26,17 @@ if len(sys.argv) == 2 and len(sys.argv[1]) == 35:
     date_ranges = sys.argv[1] 
     date_from = date_ranges[20:24] + date_ranges[16:20] + date_ranges[14:16]
     date_to = date_ranges[+31:] + date_ranges[27:31] + date_ranges[25:27]
+
+    try:
+        date_from_obj = datetime.date(datetime.strptime(date_from,'%Y-%m-%d'))
+        date_to_obj = datetime.date(datetime.strptime(date_to, "%Y-%m-%d"))
+    except ValueError:
+        print("\ndate_ranges argv is incorrect\n=============================") 
+        print("USAGE: script_name.py --date_ranges=dd-mm-yyyy_dd-mm-yyyy")
+        exit(1)  
+
 else: 
-    print("date_ranges argv are missing or incorrect\n") 
+    print("\ndate_ranges argv are missing or incorrect\n=========================================") 
     print("USAGE: script_name.py --date_ranges=dd-mm-yyyy_dd-mm-yyyy")
     exit(1)
 
